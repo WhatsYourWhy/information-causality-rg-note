@@ -1,6 +1,10 @@
 # information-causality-rg-note
 
+
+**Status:** This conceptual note is shared for discussion. No claims of physical realization are made. Discussion, feedback, and engagement are welcomed—feel free to open issues or start a discussion.
+
 This document collects notes on how information causality and renormalisation work and why they may be incompatible when information-causality is violated.
+
 
 ## The intuitive idea
 
