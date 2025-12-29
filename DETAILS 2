@@ -1,0 +1,457 @@
+Information Causality and Renormalisation
+
+A technical note on why IC-violating resources obstruct conventional local RG flows.
+
+Background
+
+Renormalisation group (RG) flows describe how a theory changes under coarse-graining: microscopic degrees of freedom are grouped into blocks and mapped to effective variables at a larger length scale. In most familiar settings, RG is useful because it comes with three expectations:
+
+Locality (of the RG step): the coarse-graining map can be implemented by local operations with bounded causal radius (e.g., a constant-depth circuit of finite-range gates).
+
+Finite-parameter closure: after each step, the effective theory remains describable by finitely many local (or rapidly decaying) couplings whose number does not grow with system size or RG depth.
+
+Operational faithfulness: the coarse theory reproduces the operational predictions of the microscopic theory for the class of protocols the theory allows.
+
+Information causality (IC) is an information-theoretic principle: if Alice sends Bob 
+𝑚
+m classical bits, Bob should not gain access to more than 
+𝑚
+m bits of useful information about Alice’s remote data (in the precise sense of the IC inequality). Quantum theory respects IC: entanglement does not enable a small classical message to unlock arbitrarily large addressable remote information.
+
+A hypothetical non-signalling resource such as a Popescu–Rohrlich (PR) box violates IC. In particular, PR correlations allow perfect random-access coding: with only one classical bit from Alice to Bob, Bob can recover any chosen one of 
+𝑁
+N bits held by Alice, for arbitrarily large 
+𝑁
+N. This does not signal superluminally (it remains non-signalling), but it violates IC by allowing a constant-size message to unlock an unbounded addressable dataset. We refer to this as the fire-hose effect.
+
+This note formalizes the claim:
+
+IC-violating resources are incompatible with conventional RG flows that are simultaneously localizable, finite-parameter, and operationally faithful.
+
+Definitions
+Localizable channel
+
+A channel 
+𝑅
+R is localizable if it can be implemented by a constant-depth circuit of finite-range local gates (or, equivalently, by bounded-time evolution under a finite-range Hamiltonian), with depth independent of lattice size. Such maps have a finite causal radius: outputs on a region can depend only on inputs within a bounded neighborhood.
+
+RG transformation
+
+An RG transformation 
+𝑅
+R is a physical coarse-graining map from microscopic degrees of freedom at spacing 
+𝑎
+a to coarse degrees of freedom at spacing 
+𝑏
+𝑎
+ba. Formally, 
+𝑅
+R is a completely positive trace-preserving (CPTP) map (or a stochastic map in a classical/GPT setting) and is translation invariant.
+
+Operational faithfulness (RAC class)
+
+Fix a class of protocols consisting of:
+
+local operations within regions,
+
+a bounded amount 
+𝑚
+=
+𝑂
+(
+1
+)
+m=O(1) of classical communication across region boundaries,
+
+and permitted uses of the microscopic theory’s resources (including any non-signalling boxes provided by the theory).
+
+An RG map 
+𝑅
+R is operationally faithful (for this class) if any protocol achievable in the microscopic theory with success probability 
+𝑝
+p is achievable in the coarse theory with the same success probability 
+𝑝
+p (up to constant-factor relabelings of degrees of freedom).
+
+IC-violating resource
+
+An IC-violating resource is a bipartite non-signalling correlation that violates the information-causality bound. A PR box is the standard example. We assume the resource is part of the operational content of the microscopic theory and is available between arbitrary pairs of sites.
+
+Finite-parameter closure
+
+A family of effective theories has finite-parameter closure if, after each RG step, the theory can be specified by a number of local (or rapidly decaying) couplings bounded independently of system size and RG depth.
+
+Theorem (No conventional RG under ubiquitous IC violation)
+Assumptions (microscopic theory)
+
+Finite local capacity: each site has finite state dimension 
+𝑑
+l
+o
+c
+d
+loc
+	​
+
+, so the number of distinguishable local states is finite and the classical storage capacity per site is 
+log
+⁡
+𝑑
+l
+o
+c
+logd
+loc
+	​
+
+ bits.
+
+Finite-range locality: microscopic dynamics are finite-range (equivalently, admit a Lieb–Robinson bound with finite velocity 
+𝑣
+L
+R
+v
+LR
+	​
+
+).
+
+Ubiquitous IC-violating resource: an IC-violating non-signalling resource (e.g., PR boxes) is available between arbitrary pairs of sites and may be used in protocols.
+
+RG desiderata (conventional RG step)
+
+Call an RG map 
+𝑅
+R conventional if it satisfies:
+
+Locality: 
+𝑅
+R is localizable by a constant-depth finite-range circuit independent of lattice size.
+
+Physicality: 
+𝑅
+R is CPTP (or stochastic) and translation invariant.
+
+Finite-parameter closure: iterating 
+𝑅
+R yields effective theories with a bounded number of relevant couplings.
+
+Faithfulness (RAC class): 
+𝑅
+R preserves the operational success probabilities of random-access style protocols that use the IC-violating resource and only 
+𝑚
+=
+𝑂
+(
+1
+)
+m=O(1) communicated bits across boundaries.
+
+Conclusion
+
+No conventional RG transformation exists under these assumptions.
+Equivalently, if a theory contains an IC-violating resource as part of its operational content, then any coarse-graining flow must abandon at least one of: (i) locality of the RG step, (ii) finite-parameter closure, or (iii) operational faithfulness.
+
+Proof sketch (three lemmas → contradiction)
+Lemma 1 (Causal support of a local RG step)
+
+Let 
+𝐵
+B be a block. If 
+𝑅
+R is implemented by a depth-
+𝐷
+D circuit of finite-range gates (range 
+𝑘
+k), then the coarse variable 
+Σ
+𝐵
+Σ
+B
+	​
+
+ produced for block 
+𝐵
+B can depend only on microscopic degrees of freedom within a neighborhood of thickness
+
+𝑅
+∗
+=
+𝑂
+(
+𝐷
+𝑘
+)
+R
+∗
+	​
+
+=O(Dk)
+
+around 
+𝐵
+B. In particular, information originating outside this causal neighborhood cannot influence 
+Σ
+𝐵
+Σ
+B
+	​
+
+.
+
+Intuition: finite-depth locality yields a bounded light-cone / causal radius.
+
+Lemma 2 (Bound on addressable classical information injectible through a shell)
+
+Assume each microscopic site has finite state dimension 
+𝑑
+l
+o
+c
+d
+loc
+	​
+
+. Consider any process whose influence on 
+Σ
+𝐵
+Σ
+B
+	​
+
+ is supported only on a shell 
+𝑆
+S of sites (for example, the boundary neighborhood identified in Lemma 1). Then the number of independent classical bits about the complement that can be made recoverable from 
+Σ
+𝐵
+Σ
+B
+	​
+
+ via that influence is bounded by
+
+𝑂
+ ⁣
+(
+∣
+𝑆
+∣
+log
+⁡
+𝑑
+l
+o
+c
+)
+.
+O(∣S∣logd
+loc
+	​
+
+).
+
+Reason: the shell 
+𝑆
+S has at most 
+𝑑
+l
+o
+c
+∣
+𝑆
+∣
+d
+loc
+∣S∣
+	​
+
+ distinguishable configurations. Any CPTP map acting only on 
+𝑆
+S cannot encode more than 
+∣
+𝑆
+∣
+log
+⁡
+𝑑
+l
+o
+c
+∣S∣logd
+loc
+	​
+
+ bits’ worth of distinguishable classical messages into 
+Σ
+𝐵
+Σ
+B
+	​
+
+. This is a counting/encoding bound (stronger than a mutual-information heuristic).
+
+Lemma 3 (Fire-hose: PR-assisted random access with 
+𝑚
+=
+𝑂
+(
+1
+)
+m=O(1) communication)
+
+If PR correlations are available, then for any 
+𝑁
+N there exists a protocol in which:
+
+Alice holds 
+𝑁
+N classical bits 
+𝑥
+1
+,
+…
+,
+𝑥
+𝑁
+x
+1
+	​
+
+,…,x
+N
+	​
+
+,
+
+Bob chooses an index 
+𝑘
+k,
+
+using shared PR resources and only 
+𝑚
+=
+1
+m=1 classical bit from Alice to Bob, Bob recovers 
+𝑥
+𝑘
+x
+k
+	​
+
+ with certainty.
+
+This yields addressable access to an arbitrarily large dataset using constant communication, violating information causality. The resource remains non-signalling; what grows is the size 
+𝑁
+N of the addressable family of possible queries.
+
+Contradiction (faithfulness vs. the shell bound)
+
+Let 
+𝐵
+B be a coarse block containing 
+Θ
+(
+𝐿
+𝑑
+)
+Θ(L
+d
+) microscopic sites. By Lemma 3, the microscopic theory enables protocols in which a constant number of communicated bits across a boundary, together with the IC-violating resource, supports perfect random access to one of 
+Θ
+(
+𝐿
+𝑑
+)
+Θ(L
+d
+) bits.
+
+If the RG map 
+𝑅
+R is faithful (RAC class), the coarse theory must retain the ability to implement the corresponding random-access behavior at coarse scales with the same success probability.
+
+However, Lemma 1 implies that a constant-depth local RG step can only couple 
+Σ
+𝐵
+Σ
+B
+	​
+
+ to a shell 
+𝑆
+S whose size scales like the boundary area (times a constant thickness). Lemma 2 then bounds the amount of recoverable/addressable classical dependence that can be encoded into 
+Σ
+𝐵
+Σ
+B
+	​
+
+ through that shell by 
+𝑂
+(
+∣
+𝑆
+∣
+log
+⁡
+𝑑
+l
+o
+c
+)
+O(∣S∣logd
+loc
+	​
+
+), which scales like an area law.
+
+For sufficiently large blocks, 
+Θ
+(
+𝐿
+𝑑
+)
+Θ(L
+d
+) (volume scaling) contradicts 
+𝑂
+(
+∣
+𝑆
+∣
+log
+⁡
+𝑑
+l
+o
+c
+)
+O(∣S∣logd
+loc
+	​
+
+) (area scaling) under a fixed-depth local RG step. Therefore, to preserve the fire-hose operational capability one must violate at least one conventional RG desideratum:
+
+Abandon locality: allow RG depth (or causal radius) to grow with block size.
+
+Abandon finite-parameter closure: introduce nonlocal couplings or an effective parameter space that grows with scale/iteration.
+
+Abandon faithfulness: discard (or render operationally irrelevant) the IC-violating resource under coarse-graining.
+
+Thus no conventional RG flow exists.
+
+∎
+
+Remarks
+
+The argument does not assume spectral gaps, equilibrium, or entanglement area laws. It relies only on causal locality (finite-depth / Lieb–Robinson type constraints) and finite local information capacity.
+
+Stating the contradiction in terms of random-access operational capability (rather than raw mutual information) avoids overclaiming. The fire-hose effect is about addressable access, not bulk transmission.
+
+CPTP alone does not constrain information flow; the key constraint is localizability with bounded depth, which yields a causal radius and the shell-encoding bound.
+
+The result applies to classical, quantum, and GPT settings that admit an IC-violating non-signalling resource as part of their operational content.
+
+Conclusion
+
+IC-violating resources enable a fire-hose effect: a constant-size classical interface can unlock an unbounded family of addressable remote bits. Conventional RG depends on the opposite intuition: coarse-graining should yield a local, finite-parameter effective description whose operational content can be mediated through bounded-radius locality. Under operational faithfulness, these requirements collide. Therefore, information causality emerges as a consistency condition for the existence of a local, finite-parameter RG description: violating IC forces one to abandon locality of the RG step, finite-parameter closure, or faithfulness.
